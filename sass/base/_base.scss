@@ -1,0 +1,24 @@
+/* basic resets. No normalize. Browser these days are quite similar when they first load  */
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    /* inherit keyword forces inheritance. box-sizing property by itself is not inherited. We should use power of inheritance as much as we can */
+    box-sizing: inherit;
+}
+
+/* Good practice. This will be 16px, if user doesn't change the default browser font-size 
+ 10/16 = 0.625 = 62.5% . we divide by 10 coz we want font-size to be 10px.
+ If user set it to 18px let's say. It will be automatically converted as we set font-size in 62.5% of root font-size.
+*/
+html {
+    font-size: 62.5%;
+}
+
+/* they will all be inherited by body child elements
+   learn about inheritance in css 
+   padding is not inherited like fonts and colors*/
+body {
+    box-sizing: border-box;
+}
