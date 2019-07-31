@@ -1,0 +1,96 @@
+.story {
+	width: 75%;
+	margin: 0 auto;
+	box-shadow: 0 3rem 6rem rgba($color-black, .1);
+	background-color: rgba($color-white, .3);
+	border-radius: 3px;
+	padding: 6rem;
+	padding-left: 9rem; // coz we used -3rem in __shape
+	font-size: $default-font-size;
+	transform: skewX(-12deg);
+
+	/* & > * { this wont work coz we cant use transform property twice on one element,
+		so we apply individually
+		transform: skewX(12deg);
+	} */
+
+	@include respond(tab-port) {
+		width: 100%;
+		padding: 4rem;
+		padding-left: 7rem;
+	}
+
+	@include respond(phone) {
+		transform: skewX(0);
+	}
+
+	&__shape {
+		width: 15rem;
+		height: 15rem;
+		float: left;
+		// 50% radius which is half the width and height of the element- 7.5rem
+		// inorder to this work, the element must be floated, and should have width and height
+		//shape-outside : Where the content flows around the element, in this case circle
+		-webkit-shape-outside: circle(50% at 50% 50%);
+		shape-outside: circle(50% at 50% 50%);
+		// if we want that element to look like circle
+		// the best way to move around element that's floated is not mess with margin, but use transform
+		transform: translateX(-3rem) skewX(12deg);
+		position: relative;
+		overflow: hidden;
+
+		@supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+			-webkit-clip-path: circle(50% at 50% 50%);
+			clip-path: circle(50% at 50% 50%);
+
+		}
+
+		@include respond(phone) {
+			transform: translateX(-3rem) skewX(0);
+		}
+	}
+
+	&__img {
+		// it is inside 'shape' which is width 15rem so will be 15rem
+		// width: 100%;
+		// img is wider than its height so here we use height to fill the space
+		height: 100%;
+		transform: translateX(-4rem) scale(1.4);
+		transition: all .5s;
+		backface-visibility: hidden;
+	}
+
+	&__text {
+		transform: skewX(12deg);
+
+		@include respond(phone) {
+			transform: skewX(0);
+		}
+	}
+
+	&__caption {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, 20%);
+		color: $color-white;
+		text-transform: uppercase;
+		font-size: 1.7rem;
+		text-align: center;
+		opacity: 0;
+		transition: all .5s;
+		// fix the glitch whenever u are using transform and some wierd stuff happen
+		backface-visibility: hidden;
+	}
+
+	&:hover &__caption {
+		opacity: 1;
+		transform: translate(-50%, -50%);
+	}
+
+	&:hover &__img {
+		transform: translateX(-4rem) scale(1);
+		// value less than 100 makes it darker and above brighter
+		filter: blur(3px) brightness(80%);
+	}
+}

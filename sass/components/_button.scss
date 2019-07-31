@@ -1,5 +1,7 @@
 .btn {
 
+    // btn doesn't have pseudo classes so we use &, otherwise button doesnt get below styles
+    &,
     /* unvisited link and visited link */
     &:link,
     &:visited {
@@ -10,7 +12,10 @@
         border-radius: 10rem;
         transition: all .2s;
         position: relative;
-        font-size: 1.6rem;
+        font-size: $default-font-size;
+        // Change for the <button> element
+        border: none;
+        cursor: pointer;
     }
 
     &:hover {
@@ -19,19 +24,31 @@
 
         /* when we hover the button, we want certain state for after elements */
         &::after {
-            transform: scaleX(1.4) scaleY(1.6);
             opacity: 0;
+            transform: scaleX(1.4) scaleY(1.6);
         }
     }
 
-    &:active {
+    &:active,
+    &:focus {
+        outline: none;
         transform: translateY(-1px);
         box-shadow: 0 .5rem 1rem rgba($color-black, 0.2);
     }
 
     &--white {
-        background-color: #fff;
+        background-color: $color-white;
         color: $color-grey-dark;
+
+        &::after {
+            background-color: $color-white;
+
+        }
+    }
+
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
 
         &::after {
             background-color: $color-white;
@@ -54,8 +71,37 @@
         transition: all .4s;
     }
 
+    // The animation-fill-mode property specifies a style for the target element
+    //  when the animation is not playing (before it starts, after it ends, or both).
     &--animated {
         animation: moveInBottom .5s ease-out .75s;
         animation-fill-mode: backwards;
+    }
+}
+
+
+.btn-text {
+
+    &:link,
+    &:visited {
+        font-size: $default-font-size;
+        color: $color-primary;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary;
+        padding: 3px;
+    }
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black, .15);
+        transform: translateY(-2px);
+
+    }
+
+    &:active {
+        box-shadow: 0 .5rem 1rem rgba($color-black, .15);
+        transform: translateY(0);
     }
 }

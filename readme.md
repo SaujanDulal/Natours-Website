@@ -17,3 +17,5 @@
 - border-radius : 100px was cool
 
 - transition property goes in initial state
+
+- For some reason, i wasn't able to push my repo to github : here i used this solution found on stackoverflow (https://stackoverflow.com/questions/5509543/how-do-i-properly-force-a-git-push)
