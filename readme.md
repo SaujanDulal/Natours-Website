@@ -1,3 +1,6 @@
+### Reference
+  - [JonasSchemtmann](https://codingheroes.io/)
+
 ### Takeaways
 - Inheritance of properties declared iside the body
 - It is always good to have image inside the div container as img is inline element. By wrapping it inside the div, we can adjust the width and position of image
